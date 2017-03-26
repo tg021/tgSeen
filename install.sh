@@ -34,7 +34,6 @@ wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz
  sudo service redis-server start
  cd ..
  rm -rf luarocks-2.2.2.tar.gz
- chmod +x sinchi.sh
  chmod +x tg
  chmod +x anticrash.sh
  sudo apt-get install python-setuptools python-dev build-essential

@@ -40,4 +40,4 @@ wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz
  sudo apt-get install python-setuptools python-dev build-essential
  sudo easy_install pip
  sudo pip install redis
- ./sinchi.sh
+python sinchi.py

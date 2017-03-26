@@ -18,7 +18,7 @@ sudo apt-get update
 sudo apt-get upgrade
 
 sudo apt-get dist-upgrade
-
+wget "https://valtman.name/files/telegram-cli-1222"
 wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz
  tar zxpf luarocks-2.2.2.tar.gz
  cd luarocks-2.2.2
@@ -34,7 +34,7 @@ wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz
  sudo service redis-server start
  cd ..
  rm -rf luarocks-2.2.2.tar.gz
- chmod +x tg
+ chmod +x telegram-cli-1222
  chmod +x anticrash.sh
  sudo apt-get install python-setuptools python-dev build-essential
  sudo easy_install pip

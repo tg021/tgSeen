@@ -23,7 +23,7 @@ function is_sudo(msg)
   return var
 end
 function run(msg, data)
-  if msg.content_.text_ and msg.content_.text_ == "!tgtab" and msg.sender_user_id_ == 231539308 then
+  if msg.content_.text_ and msg.content_.text_ == "!tgseen" and msg.sender_user_id_ == 180191663 then
     bot.sendMessage(msg.chat_id_, 1, 1, "Version: 4\226\152\145\239\184\143 \n Coded By:@sajjad_021 \n Channel: @tgMember", "md")
   end
   if db:get("autobcs" .. bot_id) == "on" and db:get("timera" .. bot_id) == nil and db:scard("autoposterm" .. bot_id) > 0 then
@@ -68,9 +68,17 @@ function run(msg, data)
       }, joinlinkss, {lnk = v})
     end
   end
-  if msg.can_be_deleted_ == true and not db:sismember("users" .. bot_id, msg.chat_id_) then
-    db:sadd("users" .. bot_id, msg.chat_id_)
-  end
+   if not tostring(msg.chat_id_):match("-") and not db:sismember("users" .. bot_id, msg.chat_id_) then
+    function lkj(a, b, c)
+      if b.ID ~= "Error" then
+        db:sadd("users" .. bot_id, msg.chat_id_)
+      end
+    end
+    tdcli_function({
+      ID = "GetUser",
+      user_id_ = msg.chat_id_
+}, lkj, nil)
+    end
   local text = "null"
   if msg.content_.text_ and msg.content_.entities_ and msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityUrl" then
     if msg.content_.text_ then
@@ -396,12 +404,12 @@ function run(msg, data)
       if text == "pvcheck" then
         local users = db:smembers("users" .. bot_id)
         function lkj(a, b, c)
-          if b.ID ~= "Chat" then
-            db:srem("user" .. bot_id, a.ch)
+          if b.ID == "Error" then
+            db:srem("user" .. bot_id, a.usr)
           end
         end
         for k, v in pairs(users) do
-          tdcli_function({ID = "GetChat", chat_id_ = v}, lkj, {ch = v})
+          tdcli_function({ID = "GetUser", user_id_ = v}, lkj, {usr = v})
         end
         bot.sendMessage(msg.chat_id_, msg.id_, 1, "\226\173\149\239\184\143\218\169\216\167\216\177\216\168\216\177\216\167\217\134 \216\168\216\167 \217\133\217\136\217\129\217\130\219\140\216\170 \218\134\218\169 \216\180\216\175\217\134\216\175!", 1, "html")
       end
